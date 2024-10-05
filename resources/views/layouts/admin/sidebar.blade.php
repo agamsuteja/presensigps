@@ -41,12 +41,21 @@
             <div class="dropdown-menu">
               <div class="dropdown-menu-columns">
                 <div class="dropdown-menu-column">
+                  @role('administrator|admin departemen','user')
                   <a class="dropdown-item" href="/karyawan">
                     Karyawan
                   </a>
+                  @endrole
+                  @role('administrator','user')
                   <a class="dropdown-item" href="/departemen">
                     Departemen
                   </a>
+                  @endrole
+                  @role('administrator','user')
+                  <a class="dropdown-item" href="/cuti">
+                    Cuti 
+                  </a>
+                  @endrole
                 </div>
               </div>
               
@@ -94,6 +103,37 @@
               </div>
               
             </div>
+          </li>
+
+          <li class="nav-item dropdown">
+            @role('administrator','user')
+            <a class="nav-link dropdown-toggle" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false" >
+              <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
+                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-settings"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M10.325 4.317c.426 -1.756 2.924 -1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543 -.94 3.31 .826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756 .426 1.756 2.924 0 3.35a1.724 1.724 0 0 0 -1.066 2.573c.94 1.543 -.826 3.31 -2.37 2.37a1.724 1.724 0 0 0 -2.572 1.065c-.426 1.756 -2.924 1.756 -3.35 0a1.724 1.724 0 0 0 -2.573 -1.066c-1.543 .94 -3.31 -.826 -2.37 -2.37a1.724 1.724 0 0 0 -1.065 -2.572c-1.756 -.426 -1.756 -2.924 0 -3.35a1.724 1.724 0 0 0 1.066 -2.573c-.94 -1.543 .826 -3.31 2.37 -2.37c1 .608 2.296 .07 2.572 -1.065z" /><path d="M9 12a3 3 0 1 0 6 0a3 3 0 0 0 -6 0" /></svg>
+              </span>
+              <span class="nav-link-title">
+                Konfigurasi
+              </span>
+            </a>
+            <div class="dropdown-menu">
+              <div class="dropdown-menu-columns">
+                <div class="dropdown-menu-column">
+                  <a class="dropdown-item" href="/konfigurasi/lokasikantor">
+                    Lokasi Kantor
+                  </a>
+                  <a class="dropdown-item" href="/konfigurasi/jamkerja">
+                    Jam Kerja
+                  </a>
+                  <a class="dropdown-item" href="/konfigurasi/harilibur">
+                    Hari Libur
+                  </a>
+                  <a class="dropdown-item" href="/konfigurasi/users">
+                    Users
+                  </a>
+                </div>
+              </div>
+            </div>
+            @endrole
           </li>
         </ul>
       </div>

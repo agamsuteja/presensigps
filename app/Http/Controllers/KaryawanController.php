@@ -1,19 +1,26 @@
 <?php
 
+
 namespace App\Http\Controllers;
 
 use App\Models\Karyawan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Crypt;
+use App\Models\User; // Pastikan untuk mengimpor model User
 
 class KaryawanController extends Controller
 {
     public function index(Request $request)
     {
 
+        $kode_dept = Auth::guard('user')->user()->kode_dept;
+        $user = User::find(Auth::guard('user')->user()->id);
+        
         $query = Karyawan::query();
         $query->select('karyawan.*', 'nama_dept');
         $query->join('departemen', 'karyawan.kode_dept', '=', 'departemen.kode_dept');
@@ -24,6 +31,10 @@ class KaryawanController extends Controller
 
         if(!empty($request->kode_dept)){
             $query->where('karyawan.kode_dept', $request->kode_dept);
+        }
+
+        if($user->hasRole('admin departemen')){
+            $query->where('karyawan.kode_dept', $kode_dept);
         }
         $karyawan = $query->paginate(10);
 
@@ -71,6 +82,8 @@ class KaryawanController extends Controller
 
                 if($e->getCode()==23000){
                     $message = " Data Dengan Nik". $nik. "Sudah Digunakan";
+                }else{
+                    $message = "Hubungi Tim IT";
                 }
                 return Redirect::back()->with(['warning' => 'Data Gagal Di Simpan' . $message]);
             }
@@ -143,5 +156,43 @@ class KaryawanController extends Controller
        
 
 
+    }
+
+    public function resetpassword($nik)
+    {
+        $nik = Crypt::decrypt($nik);
+        $password = Hash::make('12345');
+        $reset = DB::table('karyawan')->where('nik',$nik)->update([
+            'password' => $password
+        ]);
+
+        if($reset){
+            return Redirect::back()->with(['success'=>'Password Berhasil Diupdate']);
+        }else{
+            return Redirect::back()->with(['warning'=>'password gagal Diupdate']);
+        }
+    }   
+
+
+    public function lockandunlocklocation($nik)
+    {
+        try {
+            $karyawan = DB::table('karyawan')->where('nik', $nik)->first();  
+            $status_location = $karyawan->status_location;
+            if ($status_location == '1') {
+                DB::table('karyawan')->where('nik',$nik)->update([
+                    'status_location' => '0'
+                ]);
+            }else{
+                DB::table('karyawan')->where('nik',$nik)->update([
+                    'status_location' => '1'
+                ]);
+            }
+
+            return Redirect::back()->with(['success'=>'Status Location Berhasil Diupdate']);
+
+        } catch (\Exception $e) {
+            return Redirect::back()->with(['warning'=>'Status Location Gagal Diupdate']);
+        }
     }
 }

@@ -6,7 +6,7 @@
         <div class="col">
           <!-- Page pre-title -->
           <h2 class="page-title">
-            Data Departemen
+            Data Cuti
           </h2>
         </div>
         <!-- Page title actions -->
@@ -173,22 +173,22 @@
         </div>
       </div>
     </div>
-  </div>
+</div>
 
 {{--modal edit--}}
-  <div class="modal modal-blur fade" id="modal-editdepartemen" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit Data Departemen</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal modal-blur fade" id="modal-editdepartemen" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title">Edit Data Departemen</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="loadeditform">
+            
+            </div>
         </div>
-        <div class="modal-body" id="loadeditform">
-           
         </div>
-      </div>
     </div>
-  </div>
   
 @endsection
 

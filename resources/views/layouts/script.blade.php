@@ -1,6 +1,7 @@
 <!-- ///////////// Js Files ////////////////////  -->
     <!-- Jquery -->
     <script src="{{ asset ('assets/js/lib/jquery-3.4.1.min.js') }}"></script>
+    
     <!-- Bootstrap-->
     <script src="{{ asset ('assets/js/lib/popper.min.js') }}"></script>
     <script src="{{ asset ('assets/js/lib/bootstrap.min.js') }}"></script>

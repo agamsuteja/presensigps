@@ -29,6 +29,25 @@
     <div class="container xl">
         <div class="row">
             <div class="col-12">
+                @if (Session::get('success'))
+                    <div class="alert alert-success">
+                        
+                        {{Session::get('success')}}
+                        
+                    </div>
+                @endif
+
+                @if (Session::get('warning'))
+                    <div class="alert alert-warning">
+                    
+                        {{Session::get('warning')}}
+                        
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <form action="/presensi/izinsakit" method="GET" autocomplete="off">
                     <div class="row">
                         <div class="col-6">
@@ -91,25 +110,42 @@
                     <thead>
                         <tr>
                             <th>No.</th>
+                            <th>Kode Izin</th>
                             <th>Tanggal</th>
                             <th>Nik</th>
                             <th>Nama Karyawan</th>
                             <th>Jabatan</th>
                             <th>Status</th>
+                            <th>
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-paperclip"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 7l-6.5 6.5a1.5 1.5 0 0 0 3 3l6.5 -6.5a3 3 0 0 0 -6 -6l-6.5 6.5a4.5 4.5 0 0 0 9 9l6.5 -6.5" /></svg>
+                            </th>
                             <th>Keterangan</th>
                             <th>Status Approve</th>
                             <th>Aksi</th>
+                            
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($izinsakit as $d)
+                            @php
+                                $path = Storage::url('uploads/sid/' . $d->doc_sid);
+                            @endphp
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ date('d-m-Y',strtotime($d->tgl_izin)) }}</td>
+                                <td>{{ $d->kode_izin }}</td>
+                                <td>
+                                    {{ date('d-m-Y',strtotime($d->tgl_izin_dari)) }} s/d  {{ date('d-m-Y',strtotime($d->tgl_izin_sampai)) }}
+                                </td>
                                 <td>{{ $d->nik }}</td>
                                 <td>{{ $d->nama_lengkap }}</td>
                                 <td>{{ $d->jabatan }}</td>
                                 <td>{{ $d->status == "i" ? "izin" : "sakit"}}</td>
+                                <td>
+                                    <a href="{{url($path)}}" target="_blank">
+                                        {{$d->doc_sid}}
+                                       
+                                    </a>
+                                </td>
                                 <td>{{ $d->keterangan }}</td>
                                 <td>
                                     @if ($d->status_approved==1)
@@ -122,7 +158,7 @@
                                 </td>
                                 <td>
                                     @if ($d->status_approved==0)
-                                    <a href="#" class="btn btn-primary custom-btn" id="approve" id_sakitizin="{{ $d->id }}">
+                                    <a href="#" class="btn btn-primary custom-btn approve"  kode_izin="{{ $d->kode_izin }}">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-check">
                                             <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
                                             <path d="M5 12l5 5l10 -10"/>
@@ -130,7 +166,7 @@
                                     </a>
                                     
                                     @else
-                                        <a href="/presensi/{{ $d->id }}/batalkanizinsakit" class="btn btn-sm btn-danger">
+                                        <a href="/presensi/{{ $d->kode_izin }}/batalkanizinsakit" class="btn btn-sm btn-danger">
                                             <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-circle-letter-x"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0" /><path d="M10 8l4 8" /><path d="M10 16l4 -8" /></svg>
                                             Batalkan
                                         </a>
@@ -146,7 +182,7 @@
         </div>
     </div>
 </div>
-<div class="modal modal-blur fade" id="modal-izinsakitmati" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal modal-blur fade" id="modal-izinSakit" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -156,7 +192,7 @@
         <div class="modal-body">
            <form action="/presensi/approveizinsakit" method="POST">
             @csrf
-            <input type="hidden" id="id_izinsakit_form" name="id_izinsakit_form">
+            <input type="hidden" id="kode_izin_form" name="kode_izin_form">
             <div class="row">
                 <div class="col-12">
                     <div class="form-group">
@@ -189,11 +225,11 @@
 @push('mysript')
     <script>
         $(function(){
-            $("#approve").click(function(e){
+            $(".approve").click(function(e){
                 e.preventDefault();
-                var id_sakitizin = $(this).attr("id_sakitizin");
-                $("#id_izinsakit_form").val(id_sakitizin);
-                $("#modal-izinsakitmati").modal("show");
+                var kode_izin = $(this).attr("kode_izin");
+                $("#kode_izin_form").val(kode_izin);
+                $("#modal-izinSakit").modal("show");
             });
 
             $("#dari,#sampai").datepicker({ 

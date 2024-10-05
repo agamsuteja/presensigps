@@ -25,10 +25,12 @@
                                       </span>
                         
                                 
-                                  <input type="text" id="tanggal" value="{{ date("Y-m-d")}}" name="tanggal" value="" class="form-control" placeholder="Tanggal Presensi" autocomplete="off">
+                                  <input type="text" id="tanggal" value="{{ date('Y-m-d') }}" name="tanggal" value="" class="form-control" placeholder="Tanggal Presensi" autocomplete="off">
                             </div>
                         </div>
                     </div>
+
+                    
                     <div class="row">
                         <div class="col-12">
                             <table class="table table-striped tabel-hover">
@@ -37,9 +39,11 @@
                                         <th>No</th>
                                         <th>NIK</th>
                                         <th>Nama Karyawan</th>
-                                        <th>Departemen</th>
+                                        <th>Dept</th>
+                                        <th>Jadwal</th>
                                         <th>Jam Masuk</th>
                                         <th>Foto</th>
+                                        <th>Status</th>
                                         <th>Jam Keluar</th>
                                         <th>Foto</th>
                                         <th>Keterangan</th>
@@ -65,11 +69,24 @@
       </div>
     </div>
 </div>
+<div class="modal modal-blur fade" id="modal-koreksipresensi" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Koreksi Presensi</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="loadkoreksipresensi">
+           
+        </div>
+      </div>
+    </div>
+</div>
 @endsection
 @push('mysript')
         <script>
         $(function () {
-            $("#dari, #sampai").datepicker({ 
+            $("#tanggal").datepicker({ 
                 autoclose: true, 
                 todayHighlight: true,
                 format: 'yyyy-mm-dd',

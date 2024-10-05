@@ -2,14 +2,15 @@
 @import url("inc/bootstrap/bootstrap.min.css");
 @import url("inc/owl-carousel/owl.carousel.min.css");
 @import url("inc/owl-carousel/owl.theme.default.css");
-@import url("https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap");
+/* @import url("https://fonts.googleapis.com/css?family=Inter:400,500,700&display=swap"); */
+@import url("https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;700&display=swap"); /* Ganti Inter dengan Figtree */
 body {
-  font-family: "Inter", sans-serif;
+  font-family: "Figtree", sans-serif; /* Ganti Inter dengan Figtree */
   font-size: 15px;
   line-height: 1.55rem;
   letter-spacing: -0.015rem;
   color: #000000;
-  background: #f9f9f9;
+  background: #0f0f0f;
   width: 100%;
   height: 100%;
   overflow-x: hidden;
@@ -27,7 +28,7 @@ body {
 
 a {
   transition: 0.2s all;
-  color: #219ebc;
+  color: #ff8100;
   outline: 0 !important;
 }
 
@@ -35,7 +36,7 @@ a:hover,
 a:active,
 a:focus {
   outline: 0 !important;
-  color: #219ebc;
+  color: #ff8100;
   text-decoration: none;
 }
 
@@ -73,7 +74,7 @@ button:focus {
   right: 0;
   width: 100%;
   z-index: 99999;
-  background: #219ebc;
+  background: #ff8100;
 }
 
 .appHeader.no-border {
@@ -231,11 +232,11 @@ button:focus {
 }
 
 .appHeader.scrolled.bg-primary .headerButton {
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .appHeader.scrolled.bg-primary.is-active {
-  background: #219ebc !important;
+  background: #ff8100 !important;
 }
 
 .appHeader.scrolled.bg-primary.is-active .headerButton {
@@ -427,7 +428,7 @@ button:focus {
   align-items: center;
   justify-content: center;
   border-radius: 200px;
-  background: #219ebc;
+  background: #ff8100;
 }
 
 .appBottomMenu .item .action-button.large {
@@ -440,7 +441,7 @@ button:focus {
 
 .appBottomMenu .item .action-button i.icon,
 .appBottomMenu .item .action-button ion-icon {
-  color: #fff !important;
+  color: #0f0f0f !important;
   margin: 0 !important;
   line-height: 0 !important;
 }
@@ -464,7 +465,7 @@ button:focus {
 .appBottomMenu .item.active i.icon,
 .appBottomMenu .item.active ion-icon,
 .appBottomMenu .item.active strong {
-  color: #219ebc !important;
+  color: #ff8100 !important;
   font-weight: 500;
 }
 
@@ -613,7 +614,7 @@ button:focus {
   display: flex;
   align-items: center;
   position: relative;
-  background: #219ebc;
+  background: #ff8100;
   box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
   position: fixed;
   z-index: 100;
@@ -624,7 +625,7 @@ button:focus {
 }
 
 .profileBox:before {
-  background: #219ebc;
+  background: #ff8100;
   content: "";
   height: env(safe-area-inset-top);
   display: block;
@@ -719,7 +720,7 @@ button:focus {
   align-items: flex-start;
   justify-content: space-between;
   padding: 0px 16px 10px 16px;
-  background: #219ebc;
+  background: #ff8100;
 }
 
 .action-group .action-button {
@@ -907,7 +908,7 @@ button:focus {
 .row {
   margin-left: -8px;
   margin-right: -8px;
-}
+} 
 
 .col-1,
 .col-2,
@@ -1386,7 +1387,7 @@ b {
 }
 
 code {
-  color: #219ebc;
+  color: #ff8100;
 }
 
 figure.codebox {
@@ -1573,7 +1574,7 @@ i.icon {
 
 .badge-primary,
 a.badge-primary {
-  background: #219ebc !important;
+  background: #ff8100 !important;
 }
 
 .badge-secondary,
@@ -1584,7 +1585,7 @@ a.badge-secondary {
 .badge-success,
 a.badge-success {
   background: rgb(33,158,188);
-  background: linear-gradient(90deg, rgba(33,158,188,1) 0%, rgba(0,0,0,1) 255%);
+  background: linear-gradient(90deg, rgb(4, 245, 56) 0%, rgba(0,0,0,1) 255%);
 }
 
 .badge-danger,
@@ -2129,7 +2130,7 @@ a.badge-dark {
   display: block;
   font-size: 15px;
   font-weight: 500;
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .btn {
@@ -2228,8 +2229,8 @@ a.badge-dark {
 }
 
 .btn-primary {
-  background: #219ebc !important;
-  border-color: #219ebc !important;
+  background: #ff8100 !important;
+  border-color: #ff8100 !important;
   color: #ffffff !important;
 }
 
@@ -2243,8 +2244,8 @@ a.badge-dark {
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-  background: #219ebc;
-  border-color: #219ebc;
+  background: #ff8100;
+  border-color: #ff8100;
   opacity: 0.5;
 }
 
@@ -2334,7 +2335,7 @@ a.badge-dark {
 }
 
 .btn-link {
-  color: #219ebc !important;
+  color: #ff8100 !important;
 }
 
 .btn-info {
@@ -2403,29 +2404,29 @@ a.badge-dark {
 
 .btn-outline-primary {
   background: transparent;
-  border-color: #219ebc;
+  border-color: #ff8100;
   border-width: 1px;
-  color: #219ebc;
+  color: #ff8100;
   transition: 0.2s all;
 }
 
 .btn-outline-primary:hover,
 .btn-outline-primary:active {
   background: rgba(30, 116, 253, 0.15) !important;
-  border-color: #219ebc !important;
-  color: #219ebc !important;
+  border-color: #ff8100 !important;
+  color: #ff8100 !important;
 }
 
 .btn-outline-primary.active {
-  background: #219ebc !important;
+  background: #ff8100 !important;
   color: #fff !important;
-  border-color: #219ebc !important;
+  border-color: #ff8100 !important;
 }
 
 .btn-outline-primary.disabled,
 .btn-outline-primary:disabled {
-  color: #219ebc !important;
-  border-color: #219ebc !important;
+  color: #ff8100 !important;
+  border-color: #ff8100 !important;
   background: transparent !important;
   opacity: 0.5;
 }
@@ -2611,7 +2612,7 @@ a.badge-dark {
 .btn-text-primary {
   background: transparent;
   border-color: transparent;
-  color: #219ebc !important;
+  color: #ff8100 !important;
   transition: 0.2s all;
 }
 
@@ -2623,13 +2624,13 @@ a.badge-dark {
 .btn-text-primary.active {
   background: rgba(30, 116, 253, 0.15) !important;
   border-color: transparent !important;
-  color: #219ebc !important;
+  color: #ff8100 !important;
 }
 
 .btn-text-primary.disabled,
 .btn-text-primary:disabled {
-  color: #219ebc !important;
-  border-color: #219ebc !important;
+  color: #ff8100 !important;
+  border-color: #ff8100 !important;
   background: transparent !important;
   opacity: 0.5;
 }
@@ -3081,7 +3082,7 @@ a.badge-dark {
   background-repeat: no-repeat;
   background-position: center center;
   content: "";
-  font-family: "Line Awesome Free";
+  font-family: "Figtree", sans-serif; /* Ganti Line Awesome dengan Figtree */
   width: 20px;
   height: 20px;
   font-weight: 700;
@@ -3242,7 +3243,7 @@ a.badge-dark {
 }
 
 .action-button-list > li .btn.text-primary {
-  color: #219ebc !important;
+  color: #ff8100 !important;
 }
 
 .action-button-list > li .btn.text-secondary {
@@ -3430,7 +3431,7 @@ a.badge-dark {
   line-height: 1em;
   margin-top: 30px;
   margin-bottom: -10px;
-  color: #219ebc;
+  color: #ff8100;
   text-align: center;
 }
 
@@ -3530,7 +3531,7 @@ a.badge-dark {
 }
 
 .panelbox .modal-dialog .modal-content .modal-header .panel-close {
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .panelbox .modal-dialog .modal-content .modal-header .panel-close i.icon,
@@ -3637,7 +3638,7 @@ a.badge-dark {
 }
 
 .bg-primary {
-  background: #219ebc !important;
+  background: #ff8100 !important;
   color: #fff;
 }
 
@@ -3676,7 +3677,7 @@ a.badge-dark {
 }
 
 a.bg-primary {
-  background: #219ebc !important;
+  background: #ff8100 !important;
   color: #fff !important;
 }
 
@@ -3756,7 +3757,7 @@ a.bg-dark:active {
 
 .text-primary,
 a.text-primary {
-  color: #219ebc !important;
+  color: #ff8100 !important;
 }
 
 .text-secondary,
@@ -3795,7 +3796,7 @@ a.text-dark {
 }
 
 .border-primary {
-  border-color: #219ebc !important;
+  border-color: #ff8100 !important;
 }
 
 .border-secondary {
@@ -3855,9 +3856,9 @@ a.text-dark {
 }
 
 .alert-primary {
-  background: #219ebc;
+  background: #ff8100;
   color: #fff;
-  border: 1px solid #219ebc;
+  border: 1px solid #ff8100;
 }
 
 .alert-primary a {
@@ -3875,21 +3876,21 @@ a.text-dark {
 
 .alert-outline-primary {
   background: transparent;
-  color: #219ebc;
-  border: 1px solid #219ebc;
+  color: #ff8100;
+  border: 1px solid #ff8100;
 }
 
 .alert-outline-primary a {
-  color: #219ebc !important;
+  color: #ff8100 !important;
   text-decoration: underline !important;
 }
 
 .alert-outline-primary .alert-title {
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .alert-outline-primary .close {
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .alert-secondary {
@@ -4211,7 +4212,7 @@ textarea,
 }
 
 .form-group .input-wrapper.active .label {
-  color: #219ebc !important;
+  color: #ff8100 !important;
 }
 
 .form-group.basic {
@@ -4233,8 +4234,8 @@ textarea,
 
 .form-group.basic .form-control:focus,
 .form-group.basic .custom-select:focus {
-  border-bottom-color: #219ebc;
-  box-shadow: inset 0 -1px 0 0 #219ebc;
+  border-bottom-color: #ff8100;
+  box-shadow: inset 0 -1px 0 0 #ff8100;
 }
 
 .form-group.basic textarea.form-control {
@@ -4265,15 +4266,15 @@ textarea,
 }
 
 .form-group.boxed .form-control {
-  background: #fff;
+  background: #f9ceb6;
   box-shadow: none;
-  height: 42px;
-  border-radius: 6px;
-  padding: 0 40px 0 16px;
+  height: 35px;
+  border-radius: 40px;
+  padding: 0 130px 0 25px;
 }
 
 .form-group.boxed .form-control:focus {
-  border-color: #219ebc;
+  border-color: #ff8100;
 }
 
 .form-group.boxed textarea.form-control {
@@ -4467,8 +4468,8 @@ textarea,
 }
 
 .nav-tabs.style1 .nav-item .nav-link.active {
-  color: #141515;
-  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+  color: #0f0f0f;
+  
 }
 
 .nav-tabs.lined {
@@ -4516,9 +4517,9 @@ textarea,
 }
 
 .nav-tabs.lined .nav-item .nav-link.active {
-  color: #219ebc;
+  color: #ff8100;
   background: transparent;
-  border-bottom-color: #219ebc !important;
+  border-bottom-color: #ff8100 !important;
 }
 
 .nav-tabs.iconed i.icon,
@@ -4556,8 +4557,8 @@ textarea,
 }
 
 .custom-control .custom-control-input:checked ~ .custom-control-label:before {
-  background: #219ebc !important;
-  border-color: #219ebc !important;
+  background: #ff8100 !important;
+  border-color: #ff8100 !important;
 }
 
 .custom-control .custom-control-input:checked ~ .custom-control-label:after {
@@ -4729,7 +4730,7 @@ textarea,
 }
 
 .message-item.user .bubble {
-  background: #219ebc;
+  background: #ff8100;
   color: #fff;
   border-radius: 16px 16px 0 16px;
 }
@@ -4778,7 +4779,7 @@ textarea,
 }
 
 .progress-bar {
-  background: #219ebc;
+  background: #ff8100;
   height: 14px;
   line-height: 1em;
   display: flex;
@@ -4894,7 +4895,7 @@ textarea,
 }
 
 .chip-primary {
-  background: #219ebc !important;
+  background: #ff8100 !important;
   color: #fff !important;
 }
 
@@ -4904,8 +4905,8 @@ textarea,
 
 .chip-primary.chip-outline {
   background: transparent !important;
-  color: #219ebc !important;
-  box-shadow: inset 0 0 0 1px #219ebc !important;
+  color: #ff8100 !important;
+  box-shadow: inset 0 0 0 1px #ff8100 !important;
 }
 
 .chip-danger {
@@ -5198,7 +5199,7 @@ textarea,
 
 .form-button-group {
   position: fixed;
-  bottom: 0;
+  bottom: 100;
   left: 0;
   right: 0;
   width: 100%;
@@ -5346,7 +5347,7 @@ textarea,
 }
 
 .form-wizard-section .button-item.active strong {
-  background: #219ebc;
+  background: #ff8100;
   color: #fff;
 }
 
@@ -5466,7 +5467,7 @@ textarea,
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #219ebc;
+  background: #ff8100;
   border-radius: 100%;
   color: #fff !important;
 }
@@ -5480,7 +5481,7 @@ textarea,
 
 .fab-button .fab:hover,
 .fab-button .fab:active {
-  background: #219ebc;
+  background: #ff8100;
 }
 
 .fab-button.text .fab {
@@ -5519,7 +5520,7 @@ textarea,
 
 .fab-button .dropdown-menu .dropdown-item {
   padding: 0;
-  background: #219ebc;
+  background: #ff8100;
   width: 42px;
   height: 42px;
   display: flex !important;
@@ -5533,7 +5534,7 @@ textarea,
 
 .fab-button .dropdown-menu .dropdown-item:hover,
 .fab-button .dropdown-menu .dropdown-item:active {
-  background: #219ebc;
+  background: #ff8100;
 }
 
 .fab-button .dropdown-menu .dropdown-item i.icon,
@@ -5729,7 +5730,7 @@ textarea,
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #219ebc !important;
+  color: #ff8100 !important;
   font-size: 13px;
   border-right: 1px solid #e1e1e1;
   padding: 16px 6px;
@@ -6137,7 +6138,7 @@ textarea,
 }
 
 .pagination .page-item .page-link {
-  background: #219ebc;
+  background: #ff8100;
   border: 0;
   color: #fff;
   box-shadow: 0 !important;
@@ -6561,7 +6562,7 @@ textarea,
 
 .profile-info .link {
   margin-top: 4px;
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .profile-stats {
@@ -6609,9 +6610,9 @@ textarea,
   font-size: 24px;
   align-items: center;
   justify-content: center;
-  background: #219ebc;
+  background: #ff8100;
   position: relative;
-  border: 2px solid #219ebc;
+  border: 2px solid #ff8100;
 }
 
 .stepper .stepper-button:last-child {
@@ -6626,10 +6627,10 @@ textarea,
   box-shadow: none !important;
   background: transparent;
   text-align: center;
-  border: 2px solid #219ebc;
+  border: 2px solid #ff8100;
   font-size: 17px;
   font-weight: 500;
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .stepper-sm {
@@ -6664,13 +6665,13 @@ textarea,
 }
 
 .stepper-primary .stepper-button {
-  background: #219ebc;
-  border-color: #219ebc;
+  background: #ff8100;
+  border-color: #ff8100;
 }
 
 .stepper-primary .form-control {
-  border-color: #219ebc;
-  color: #219ebc;
+  border-color: #ff8100;
+  color: #ff8100;
 }
 
 .stepper-secondary .stepper-button {
@@ -6735,8 +6736,8 @@ textarea,
 
 .stepper-outline-primary .stepper-button {
   background: transparent;
-  color: #219ebc;
-  border-color: #219ebc;
+  color: #ff8100;
+  border-color: #ff8100;
 }
 
 .stepper-outline-primary .stepper-button:first-child {
@@ -6748,8 +6749,8 @@ textarea,
 }
 
 .stepper-outline-primary .form-control {
-  border-color: #219ebc;
-  color: #219ebc;
+  border-color: #ff8100;
+  color: #ff8100;
 }
 
 .stepper-outline-secondary .stepper-button {
@@ -6914,7 +6915,7 @@ textarea,
 
 .product-detail-header .detail-footer .price .current-price {
   font-size: 24px;
-  color: #219ebc;
+  color: #ff8100;
   font-weight: 500;
 }
 
@@ -6953,7 +6954,7 @@ textarea,
 .cart-item .in .text .price {
   font-weight: 500;
   font-size: 15px;
-  color: #219ebc;
+  color: #ff8100;
 }
 
 .cart-item .cart-item-footer {
@@ -7538,7 +7539,7 @@ body.dark-mode-active .form-wizard-section .button-item p {
 }
 
 body.dark-mode-active .form-wizard-section .button-item.active strong {
-  background: #219ebc;
+  background: #ff8100;
   color: #fff;
 }
 
@@ -7603,7 +7604,7 @@ body.dark-mode-active .message-item .footer {
 }
 
 body.dark-mode-active .message-item.user .bubble {
-  background: #219ebc;
+  background: #ff8100;
 }
 
 body.dark-mode-active .chatFooter {
@@ -7923,7 +7924,7 @@ body.dark-mode-active .nav-tabs.lined .nav-item .nav-link {
 
 body.dark-mode-active .nav-tabs.lined .nav-item .nav-link.active {
   background: transparent;
-  color: #219ebc;
+  color: #ff8100;
 }
 
 body.dark-mode-active .blog-post .post-header {
@@ -7997,26 +7998,28 @@ body.dark-mode-active .cart-item .cart-item-footer {
 }
 
 #user-section {
-  height: 240px;
-  background-color: #126782;
-  padding: 20px;
+  height: 277px;
+  background-color: #e1e1e1;
+  padding: 9px;
+  border-radius: 0px 0px 0px 0px;
 }
 
 #user-detail {
   margin-top: 20px;
   display: flex;
 }
-
+/* 
 #user-info {
   margin-left: 30px !important;
-  line-height: 2px;
+  line-height: 1px;
 }
 #user-name {
-  color: white;
+  color: #0f0f0f;
+  height: 100px;
 }
 #user-role {
-  color: white;
-}
+  color: #0f0f0f;
+} */
 
 #menu-section {
   position: absolute;
@@ -8032,10 +8035,13 @@ body.dark-mode-active .cart-item .cart-item-footer {
 
 #presence-section {
   position: absolute;
-  top: 200px;
+  top: 228px;
   width: 100%;
-  background-color: #e1e1e1;
-  border-radius: 10px 10px 0px 0px;
+  background-color: #f4f4f4;
+  /* background: rgb(255,9,3);
+  background: linear-gradient(90deg, rgba(255,9,3,1) 0%, rgba(255,129,0,1) 100%, rgba(244,244,244,1) 100%); */
+  border-radius: 40px 40px 0px 0px;
+  
 }
 
 .todaypresence {

@@ -26,7 +26,7 @@
             </span>
             <div class="d-none d-xl-block ps-2">
               <div>{{ Auth::guard('user')->user()->name }}</div>
-              <div class="mt-1 small text-muted">Administrator</div>
+              <div class="mt-1 small text-muted">{{ ucwords(Auth::guard('user')->user()->roles->pluck('name')[0]) }}</div>
             </div>
           </a>
           

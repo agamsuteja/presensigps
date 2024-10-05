@@ -26,6 +26,27 @@
         #map{ 
             height: 200px; 
         }
+
+        .jam-digital-malasngoding {
+            background-color: #02000083;
+            position: absolute;
+            top: 60px;
+            right: 1px;
+            z-index: 9999;
+            width: 110px;
+            border-radius: 10px;
+            padding: 5px;
+        }
+
+
+
+        .jam-digital-malasngoding p {
+            color: #fff;
+            font-size: 13px;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
     </style>
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
@@ -36,11 +57,20 @@
 @endsection
 @section('content')
 
-    <div class="row" style="margin-top: 70px">
+    <div class="row" style="margin-top: 60px">
         <div class="col">
             <input type="hidden" id="lokasi">
             <div class="webcam-capture"></div>
         </div>
+    </div>
+    <div class="jam-digital-malasngoding">
+        <p>{{ $hariini }}</p>
+        <p id="jam"></p>
+        <p>{{ $jamkerja->nama_jam_kerja }}</p>
+        <p>Mulai: {{ date("H:i",strtotime($jamkerja->awal_jam_masuk))}}</p>
+        <p>Masuk: {{ date("H:i",strtotime($jamkerja->jam_masuk))}}</p>
+        <p>Selesai: {{ date("H:i",strtotime($jamkerja->akhir_jam_masuk))}}</p>
+        <p>Pulang: {{ date("H:i",strtotime($jamkerja->jam_pulang))}}</p>
     </div>
 
     <div class="row">
@@ -81,6 +111,31 @@
 @endsection
 
 @push('myscript')
+
+<script type="text/javascript">
+    window.onload = function() {
+        jam();
+    }
+ 
+    function jam() {
+        var e = document.getElementById('jam')
+            , d = new Date()
+            , h, m, s;
+        h = d.getHours();
+        m = set(d.getMinutes());
+        s = set(d.getSeconds());
+ 
+        e.innerHTML = h + ':' + m + ':' + s;
+ 
+        setTimeout('jam()', 1000);
+    }
+ 
+    function set(e) {
+        e = e < 10 ? '0' + e : e;
+        return e;
+    }
+ 
+</script>
 <script>
 
     var notifikasi_in = document.getElementById('notifikasi_in');
@@ -106,22 +161,27 @@
     function successCallback(position) {
         lokasi.value = position.coords.latitude+","+position.coords.longitude;
         var map = L.map('map').setView([position.coords.latitude, position.coords.longitude], 18);
+        var lokasi_kantor = "{{ $lok_kantor->lokasi_kantor }}";
+        var lok = lokasi_kantor.split(",");
+        var lat_kantor = lok[0];
+        var long_kantor = lok[1];
+        var radius = "{{ $lok_kantor->radius }}";
                 L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
         
         var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
-        var circle = L.circle([-0.04841376064716451, 109.31826248174254], {
+        var circle = L.circle([lat_kantor, long_kantor], {
             color: 'red',
             fillColor: '#f03',
             fillOpacity: 0.5,
-            radius: 20
+            radius: radius
         }).addTo(map);
 
-                marker.bindPopup("<b>Lokasi Sudah Ideal!</b><br>Silahkan Absen.").openPopup();
-        circle.bindPopup("I am a circle.");
-        polygon.bindPopup("I am a polygon.");
+                    marker.bindPopup("<b>Apakah Lokasi Sudah Ideal?</b><br>Silahkan Absen Ketika Pin Berada Di Dalam Zona.").openPopup();
+            circle.bindPopup("Saya Sudah Berada Di Lokasi Kantor");
+            polygon.bindPopup("I am a polygon.");
 
             var popup = L.popup()
         .setLatLng([-0.04841376064716451, 109.31826248174254])

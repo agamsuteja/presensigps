@@ -24,7 +24,7 @@
                             <div class="row mt-2">
                                  <div class="col-12">
                                     <div class="form-group">
-                                        <select name="bulan" id="bulan" class="form-select">
+                                        <select name="bulan" id="bulan" class="form-select" required>
                                             <option value="">Bulan</option>
                                             @for ($i=1; $i <= 12; $i++) <option value="{{ $i}}" {{date("m") == $i ? 'selected' : ''}}>{{ $namabulan[$i]}}</option>
                                             @endfor
@@ -35,14 +35,41 @@
                             <div class="row mt-2">
                                 <div class="col-12">
                                    <div class="form-group">
-                                       <select name="tahun" id="tahun" class="form-select">
+                                       <select name="tahun" id="tahun" class="form-select" required>
                                            <option value="">Tahun</option> 
                                            @php
                                            $tahunmulai = 2023;
-                                           $tahunskrg = date("Y");
+                                           $tahunskrg = date('Y');
                                        @endphp
-                                       @for ($tahun=$tahunmulai; $tahun<= $tahunskrg; $tahun++) <option value="{{ $tahun}}" {{date("Y") == $tahun ? 'selected' : ''}}> {{ $tahun}}</option>
+                                       @for ($tahun=$tahunmulai; $tahun<= $tahunskrg; $tahun++) <option value="{{ $tahun}}" {{date('Y') == $tahun ? 'selected' : ''}}> {{ $tahun}}</option>
                                        @endfor
+                                       </select>
+                                   </div>
+                                </div>
+                           </div>
+                           @role('administrator', 'user')
+                                <div class="row mt-2">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <select name="kode_dept" id="kode_dept" class="form-select">
+                                                <option value=""> Semua Departemen</option>
+                                                @foreach ($departemen as $d)
+                                                    <option value="{{$d->kode_dept}}">{{$d->nama_dept}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            @else
+                                <input type="hidden" name="kode_dept" value="{{ Auth::guard('user')->user()->kode_dept }}">
+                            @endrole
+                            <div class="row mt-2">
+                                <div class="col-12">
+                                   <div class="form-group">
+                                       <select name="jenis_laporan" id="jenis_laporan" class="form-select">
+                                           <option value="">Jenis Laporan</option>
+                                            <option value="1">Standar</option>
+                                            <option value="2">Detail</option>
                                        </select>
                                    </div>
                                 </div>
