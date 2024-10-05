@@ -38,6 +38,7 @@
                                 @endif
                             </div>
                         </div>
+                        @role('administrator','user')
                         <div class="row">
                             <div class="col-12">
                                 <a href="#" class="btn btn-primary" id="btnTambahkaryawan">
@@ -46,6 +47,7 @@
                                     Tambah Data</a>
                             </div>
                         </div>
+                        @endrole
                         <br>
                         <div class="row">
                             <div class="col-12">
@@ -59,7 +61,7 @@
                                         <div class="col-4">
                                             <div class="form-group">
                                                 <select name="kode_dept" id="kode_dept" class="form-select">
-                                                    <option value="">Departemen</option>
+                                                    <option value="">Group</option>
                                                     @foreach ($departemen as $d)
                                                         <option value="{{ $d->kode_dept }}" {{ request()->kode_dept == $d->kode_dept ? 'selected' : '' }}>
                                                             {{ $d->nama_dept }}
@@ -94,7 +96,8 @@
                                     <th>Jabatan</th>
                                     <th>No Handphone</th>
                                     <th>foto</th>
-                                    <th>Departemen</th>
+                                    <th>Group</th>
+                                    <th>Location</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -118,23 +121,49 @@
                                        
                                     </td>
                                     <td>{{$d->nama_dept}}</td>
+                                    <td class="text-center">
+                                        @if ($d->status_location==1)
+                                            <a href="/karyawan/{{ $d->nik }}/lockandunlocklocation">
+                                                <span class="badge bg-danger bg-sm">
+                                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-lock"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 13a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2v-6z" /><path d="M11 16a1 1 0 1 0 2 0a1 1 0 0 0 -2 0" /><path d="M8 11v-4a4 4 0 1 1 8 0v4" /></svg>
+                                                </span>
+                                            </a>
+                                        @else
+                                            <a href="/karyawan/{{ $d->nik }}/lockandunlocklocation">
+                                                <span class="badge bg-success bg-sm">
+                                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-lock-open"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 11m0 2a2 2 0 0 1 2 -2h10a2 2 0 0 1 2 2v6a2 2 0 0 1 -2 2h-10a2 2 0 0 1 -2 -2z" /><path d="M12 16m-1 0a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" /><path d="M8 11v-5a4 4 0 0 1 8 0" /></svg>
+                                                </span>
+                                            </a>
+                                        @endif
+                                    </td>
+                                    
                                     <td>
+                                        @role('administrator','user')
                                         <div class="btn group">
                                             <a href="#" class="edit" nik="{{$d->nik}}">
                                                 <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-edit"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 7h-1a2 2 0 0 0 -2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2 -2v-1" /><path d="M20.385 6.585a2.1 2.1 0 0 0 -2.97 -2.97l-8.415 8.385v3h3l8.385 -8.415z" /><path d="M16 5l3 3" /></svg>
                                             </a>
                                         </div>
-                                    
-                                        <div class="btn group">     
-                                            {{-- <form action="/karywaan {{ $d->nik }}/delete">
-                                                @csrf
-                                                @method('DELETE')
+                                        @endrole
 
-                                                <a href="#"  class="btn btn-danger btn-sm delete-confirm">
-                                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-trash"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7l16 0" /><path d="M10 11l0 6" /><path d="M14 11l0 6" /><path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" /><path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
-                                                </a>
-    
-                                            </form> --}}
+                                        <div class="btn group">
+                                            <a href="/konfigurasi/{{ $d->nik }}/setjamkerja" class="">
+                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-settings-2"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M19.875 6.27a2.225 2.225 0 0 1 1.125 1.948v7.284c0 .809 -.443 1.555 -1.158 1.948l-6.75 4.27a2.269 2.269 0 0 1 -2.184 0l-6.75 -4.27a2.225 2.225 0 0 1 -1.158 -1.948v-7.285c0 -.809 .443 -1.554 1.158 -1.947l6.75 -3.98a2.33 2.33 0 0 1 2.25 0l6.75 3.98h-.033z" /><path d="M12 12m-3 0a3 3 0 1 0 6 0a3 3 0 1 0 -6 0" /></svg>
+                                            </a>
+                                        </div>
+
+                                        @role('administrator','user')
+                                        <div class="btn group">
+                                            <a href="/karyawan/{{ Crypt::encrypt($d->nik)}}/resetpassword" class="">
+                                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-key"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M14.52 2c1.029 0 2.015 .409 2.742 1.136l3.602 3.602a3.877 3.877 0 0 1 0 5.483l-2.643 2.643a3.88 3.88 0 0 1 -4.941 .452l-.105 -.078l-5.882 5.883a3 3 0 0 1 -1.68 .843l-.22 .027l-.221 .009h-1.172c-1.014 0 -1.867 -.759 -1.991 -1.823l-.009 -.177v-1.172c0 -.704 .248 -1.386 .73 -1.96l.149 -.161l.414 -.414a1 1 0 0 1 .707 -.293h1v-1a1 1 0 0 1 .883 -.993l.117 -.007h1v-1a1 1 0 0 1 .206 -.608l.087 -.1l1.468 -1.469l-.076 -.103a3.9 3.9 0 0 1 -.678 -1.963l-.007 -.236c0 -1.029 .409 -2.015 1.136 -2.742l2.643 -2.643a3.88 3.88 0 0 1 2.741 -1.136m.495 5h-.02a2 2 0 1 0 0 4h.02a2 2 0 1 0 0 -4" /></svg>
+                                                
+                                            </a>
+                                        </div>
+                                        @endrole
+                                        
+                                        @role('administrator','user')
+                                        <div class="btn group">     
+                                           
                                             <form action="{{ route('karyawan.delete', $d->nik) }}" method="POST">
                                                 @csrf
                                                 @method('DELETE')
@@ -150,6 +179,7 @@
                                                 </button>
                                             </form>
                                         </div>
+                                        @endrole
                                        
                                     </td>
         
@@ -183,7 +213,7 @@
                               <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  
                               class="icon icon-tabler icons-tabler-outline icon-tabler-barcode"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 7v-1a2 2 0 0 1 2 -2h2" /><path d="M4 17v1a2 2 0 0 0 2 2h2" /><path d="M16 4h2a2 2 0 0 1 2 2v1" /><path d="M16 20h2a2 2 0 0 0 2 -2v-1" /><path d="M5 11h1v2h-1z" /><path d="M10 11l0 2" /><path d="M14 11h1v2h-1z" /><path d="M19 11l0 2" /></svg>
                             </span>
-                            <input type="text" value="" id="nik" class="form-control" name="nik" placeholder="NIK">
+                            <input type="text" maxlength="5" value="" id="nik" class="form-control" name="nik" placeholder="NIK">
                           </div>
                     </div>
                  </div>
@@ -229,7 +259,7 @@
                     <div class="row mt-2">
                         <div class="col-12">
                             <select name="kode_dept" id="kode_dept" class="form-select">
-                                <option value="">Departemen</option>
+                                <option value="">Group</option>
                                 @foreach ($departemen as $d)
                                     <option value="{{ $d->kode_dept }}" {{ request()->kode_dept == $d->kode_dept ? 'selected' : '' }}>
                                         {{ $d->nama_dept }}

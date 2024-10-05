@@ -12,52 +12,54 @@
     </div>
 <!-- * App Header -->
 @endsection
-
-
 @section('content')
-<div class="row" style="margin-top: 70px">
-    <div class="col">
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <select name="bulan" id="bulan" class="form-control">
-                        <option value="">Bulan</option>
-                            @for ($i=1; $i <= 12; $i++) <option value="{{ $i}}" {{date("m") == $i ? 'selected' : ''}}>{{ $namabulan[$i]}}</option>
+    <div class="row" style="margin-top:70px">
+        <div class="col">
+            <div class="row">
+                <div class="col-8">
+                    <div class="form-group">
+                        <select name="bulan" id="bulan" class="form-control selecmaterialize">
+                            <option value="">Bulan</option>
+                           
+                            @for ($i = 1; $i <= 12; $i++)
+                                <option {{Request('bulan') == $i ? 'selected' : ''}} value="{{ $i }}">{{ $namabulan[$i] }}</option>
                             @endfor
-                    </select>
+
+                        </select>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <select name="tahun" id="tahun" class="form-control">
-                        <option value="">Tahun</option>
-                        @php
-                            $tahunmulai = 2023;
-                            $tahunskrg = date("Y");
+                <div class="col-4">
+                    <div class="form-group">
+                        <select name="tahun" id="tahun" class="form-control selecmaterialize">
+                            <option value="">Tahun</option>
+                            @php
+                            $tahun_awal = 2022;
+                            $tahun_sekarang = date("Y");
+                            for ($t = $tahun_awal; $t <= $tahun_sekarang; $t++) {
+                                if (Request('tahun')==$t) {
+                                    $selected = 'selected';
+                                }else{
+                                    $selected = '';
+                                }
+                                echo "<option  $selected  value='$t'>$t</option>";
+                            }
                         @endphp
-                        @for ($tahun=$tahunmulai; $tahun<= $tahunskrg; $tahun++) <option value="{{ $tahun}}" {{date("Y") == $tahun ? 'selected' : ''}}> {{ $tahun}}</option>
-                            
-                        @endfor
-                    </select>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                    <button class="btn btn-primary btn-block" id="getdata">
-                        <ion-icon name="search-outline"></ion-icon>
-                        Search</button>
+                        
+                                    
+                        </select>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+    <div class="row">
+        <div class="col-12">
+            <button class="btn btn-primary w-100" id="getdata">Cari Data</button>
+        </div>
+    </div>
+
 <div class="row">
-    <div class="col" id="showhistori">
-        
+    <div class="col" id="showhistori"> 
     </div>
 </div>
 @endsection
